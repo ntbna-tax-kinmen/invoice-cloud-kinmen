@@ -84,7 +84,8 @@ function check(){
  }else{
    tries++;
    const h=tries===1?q[4]:tries===2?q[5]:`正確答案：${String.fromCharCode(65+correct)}. ${q[2][correct]}<br>${q[6]}`;
-   m.innerHTML=`<p class=bad>${tries<3?'再想想看。':'已提供正確答案與解析。'}</p><div class=helper>${h}</div>${tries>=3?'<p><button class=btn onclick=next()>下一題 →</button></p>':''}`;
+   const strictRetry=[1600233664,1914458590].includes(Number(q[7]));
+   m.innerHTML=`<p class=bad>${tries<3?'再想想看。':'已提供正確答案與解析。'}</p><div class=helper>${h}</div>${tries>=3&&!strictRetry?'<p><button class=btn onclick=next()>下一題 →</button></p>':''}`;
  }
 }
 function help(){let q=qs[i];document.getElementById('ai').innerHTML=`<div class=helper><b>🤖 AI 智能稅務小幫手</b><p>${tries===0?q[4]:tries===1?q[5]:q[6]}</p></div>`}
